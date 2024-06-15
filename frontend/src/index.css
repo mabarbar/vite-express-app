@@ -3,14 +3,14 @@
 
 /* layout */
 :root {
-    --primary: #62b1f2;
+    --primary: #89c8fb;
     --error: #e7195a;
-    --bg-error: #5c1a1a; /* ciemny czerwony dla błędów */
-    --bg-color: #1a1a1a; /* ciemne tło */
-    --header-bg: #333; /* ciemne tło nagłówka */
-    --header-anchor: #ccc; /* jasny kolor dla linków w nagłówku */
-    --details-p: #aaa; /* jasny kolor dla tekstu szczegółów */
-    --input-border: #555; /* ciemny kolor dla obramowania inputów */
+    --bg-error: #5c1a1a;
+    --bg-color: #1a1a1a;
+    --header-bg: #232323;
+    --header-anchor: #ccc;
+    --details-p: #aaa;
+    --input-border: #555;
 }
 
 .form {

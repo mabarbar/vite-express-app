@@ -4,7 +4,12 @@ To make everything work you need to perform `npm i` in both `backend` and `front
 
 Next create `.env` file and add variables to it based on `.env.template`.
 
-To make app work, set `PORT=4000` and `MONGO_URI=mongodb+srv://admin:123@cluster0.njlzfwr.mongodb.net/?retryWrites=true&w=majority&`
+To make app work, set:
+
+-   `PORT=4000`
+-   `MONGO_URI=mongodb+srv://admin:123@cluster0.njlzfwr.mongodb.net/?retryWrites=true&w=majority&`
+-   `JWT_SECRET={{whateveryouwant}}`
+-   `JWT_EXPIRES_IN=3d` (example)
 
 # React + Vite
 

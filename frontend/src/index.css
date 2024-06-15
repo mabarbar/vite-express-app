@@ -3,16 +3,29 @@
 
 /* layout */
 :root {
-    --primary: #1aac83;
+    --primary: #62b1f2;
     --error: #e7195a;
+    --bg-error: #5c1a1a; /* ciemny czerwony dla błędów */
+    --bg-color: #1a1a1a; /* ciemne tło */
+    --header-bg: #333; /* ciemne tło nagłówka */
+    --header-anchor: #ccc; /* jasny kolor dla linków w nagłówku */
+    --details-p: #aaa; /* jasny kolor dla tekstu szczegółów */
+    --input-border: #555; /* ciemny kolor dla obramowania inputów */
 }
+
+.form {
+    color: var(--header-anchor);
+    font-size: 1em;
+    margin: 20px 0;
+}
+
 body {
-    background: #f1f1f1;
+    background: var(--bg-color);
     margin: 0;
     font-family: "Poppins";
 }
 header {
-    background: #fff;
+    background: var(--header-bg);
 }
 header .container {
     max-width: 1400px;
@@ -22,8 +35,16 @@ header .container {
     align-items: center;
     justify-content: space-between;
 }
+
+header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 header a {
-    color: #333;
+    color: var(--header-anchor);
     text-decoration: none;
 }
 .pages {
@@ -39,7 +60,7 @@ header a {
     gap: 100px;
 }
 .workout-details {
-    background: #fff;
+    background: var(--header-bg);
     border-radius: 4px;
     margin: 20px auto;
     padding: 20px;
@@ -54,17 +75,17 @@ header a {
 .workout-details p {
     margin: 0;
     font-size: 0.9em;
-    color: #555;
+    color: var(--details-p);
 }
 .workout-details span {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
-    background: #f1f1f1;
+    background: var(--bg-color);
     padding: 6px;
     border-radius: 50%;
-    color: #333;
+    color: var(--header-anchor);
 }
 
 .workout-details .update-button {
@@ -74,10 +95,10 @@ header a {
     right: 20px;
     width: 25px;
     cursor: pointer;
-    background: #f1f1f1;
+    background: var(--bg-color);
     padding: 6px;
     border-radius: 50%;
-    color: #333;
+    color: var(--header-anchor);
 }
 
 /* new workout form */
@@ -90,14 +111,14 @@ input {
     margin-top: 10px;
     margin-bottom: 20px;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid var(--input-border);
     border-radius: 4px;
     box-sizing: border-box;
 }
 form button {
     background: var(--primary);
     border: 0;
-    color: #fff;
+    color: var(--header-bg);
     padding: 10px;
     font-family: "Poppins";
     border-radius: 4px;
@@ -105,7 +126,7 @@ form button {
 }
 div.error {
     padding: 10px;
-    background: #ffefef;
+    background: var(--bg-error);
     border: 1px solid var(--error);
     color: var(--error);
     border-radius: 4px;
@@ -124,7 +145,7 @@ nav a {
     margin-left: 10px;
 }
 nav button {
-    background: #fff;
+    background: var(--header-bg);
     color: var(--primary);
     border: 2px solid var(--primary);
     padding: 6px 10px;
@@ -141,6 +162,12 @@ form.login {
     max-width: 400px;
     margin: 40px auto;
     padding: 20px;
-    background: #fff;
+    background: var(--header-bg);
     border-radius: 4px;
+    color: var(--header-anchor);
+}
+
+span {
+    color: var(--primary);
+    cursor: pointer;
 }

@@ -66,11 +66,11 @@ const WorkoutDetails = ({ workout }) => {
         <div className="workout-details">
             <h4>{workout.title}</h4>
             <p>
-                <strong>Load (kg): </strong>
+                <strong>Distance (km): </strong>
                 {workout.load}
             </p>
             <p>
-                <strong>Number of reps: </strong>
+                <strong>Cost (PLN): </strong>
                 {workout.reps}
             </p>
             <p>
@@ -85,7 +85,7 @@ const WorkoutDetails = ({ workout }) => {
                 <FaPencilAlt />
             </span>
             {isVisible && (
-                <form onSubmit={handleOnSubmit}>
+                <form className="form" onSubmit={handleOnSubmit}>
                     <label>Title</label>
                     <input
                         type="text"

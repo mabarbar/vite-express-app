@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const workoutSchema = new Schema(
+const tripSchema = new Schema(
     {
-        title: {
+        destination: {
             type: String,
             required: true,
         },
-        reps: {
+        cost: {
             type: Number,
             required: true,
         },
-        load: {
+        distance: {
             type: Number,
             required: true,
         },
@@ -24,4 +24,4 @@ const workoutSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("Workout", workoutSchema);
+module.exports = mongoose.model("Trip", tripSchema);

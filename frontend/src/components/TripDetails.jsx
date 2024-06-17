@@ -1,23 +1,23 @@
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useTripsContext } from "../hooks/useTripsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 
 import { FaPencilAlt } from "react-icons/fa";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-const WorkoutDetails = ({ workout }) => {
-    const { dispatch } = useWorkoutsContext();
+const TripDetails = ({ trip }) => {
+    const { dispatch } = useTripsContext();
     const { user } = useAuthContext();
-    const [title, setTitle] = useState(workout.title);
-    const [load, setLoad] = useState(workout.load);
-    const [reps, setReps] = useState(workout.reps);
+    const [destination, setDestination] = useState(trip.destination);
+    const [distance, setDistance] = useState(trip.distance);
+    const [cost, setCost] = useState(trip.cost);
     const [isVisible, setIsVisible] = useState(false);
 
     const handleClick = async () => {
         if (!user) return;
 
         const response = await fetch(
-            `http://localhost:4000/api/workouts/${workout._id}`,
+            `http://localhost:4000/api/trips/${trip._id}`,
             {
                 method: "DELETE",
                 headers: {
@@ -37,11 +37,11 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     const handleOnSubmit = async () => {
-        console.log(title, load, reps);
+        console.log(destination, distance, cost);
         if (!user) return;
 
         const response = await fetch(
-            `http://localhost:4000/api/workouts/${workout._id}`,
+            `http://localhost:4000/api/trips/${trip._id}`,
             {
                 method: "PATCH",
                 headers: {
@@ -49,9 +49,9 @@ const WorkoutDetails = ({ workout }) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    title: title,
-                    load: load,
-                    reps: reps,
+                    destination: destination,
+                    distance: distance,
+                    cost: cost,
                 }),
             }
         );
@@ -63,18 +63,18 @@ const WorkoutDetails = ({ workout }) => {
     };
 
     return (
-        <div className="workout-details">
-            <h4>{workout.title}</h4>
+        <div className="trip-details">
+            <h4>{trip.destination}</h4>
             <p>
                 <strong>Distance (km): </strong>
-                {workout.load}
+                {trip.distance}
             </p>
             <p>
                 <strong>Cost (PLN): </strong>
-                {workout.reps}
+                {trip.cost}
             </p>
             <p>
-                {formatDistanceToNow(new Date(workout.createdAt), {
+                {formatDistanceToNow(new Date(trip.createdAt), {
                     addSuffix: true,
                 })}
             </p>
@@ -90,19 +90,19 @@ const WorkoutDetails = ({ workout }) => {
                     <input
                         type="text"
                         className="edit-form"
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => setDestination(e.target.value)}
                     />
-                    <label>Load</label>
+                    <label>Distance</label>
                     <input
                         type="number"
                         className="edit-form"
-                        onChange={(e) => setLoad(e.target.value)}
+                        onChange={(e) => setDistance(e.target.value)}
                     />
-                    <label>Reps</label>
+                    <label>Cost</label>
                     <input
                         type="number"
                         className="edit-form"
-                        onChange={(e) => setReps(e.target.value)}
+                        onChange={(e) => setCost(e.target.value)}
                     />
                     <button type="submit">Update</button>
                 </form>
@@ -111,4 +111,4 @@ const WorkoutDetails = ({ workout }) => {
     );
 };
 
-export default WorkoutDetails;
+export default TripDetails;

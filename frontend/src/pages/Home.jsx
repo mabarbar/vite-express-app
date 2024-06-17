@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useTripsContext } from "../hooks/useTripsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 // components
-import WorkoutDetails from "../components/WorkoutDetails";
-import WorkoutForm from "../components/WorkoutForm";
+import TripDetails from "../components/TripDetails";
+import TripForm from "../components/TripForm";
 
 const Home = () => {
-    const { workouts, dispatch } = useWorkoutsContext();
+    const { trips, dispatch } = useTripsContext();
     const { user } = useAuthContext();
 
     useEffect(() => {
-        const fetchWorkouts = async () => {
-            const response = await fetch("http://localhost:4000/api/workouts", {
+        const fetchTrips = async () => {
+            const response = await fetch("http://localhost:4000/api/trips", {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 },
@@ -24,18 +24,18 @@ const Home = () => {
             }
         };
 
-        if (user) fetchWorkouts();
+        if (user) fetchTrips();
     }, [dispatch, user]);
 
     return (
         <div className="home">
-            <div className="workouts">
-                {workouts &&
-                    workouts.map((workout) => (
-                        <WorkoutDetails workout={workout} key={workout._id} />
+            <div className="trips">
+                {trips &&
+                    trips.map((trip) => (
+                        <TripDetails trip={trip} key={trip._id} />
                     ))}
             </div>
-            <WorkoutForm />
+            <TripForm />
         </div>
     );
 };

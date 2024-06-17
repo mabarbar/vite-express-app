@@ -1,29 +1,29 @@
 import { useState } from "react";
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useTripsContext } from "../hooks/useTripsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const WorkoutForm = () => {
-    const { dispatch } = useWorkoutsContext();
+const TripForm = () => {
+    const { dispatch } = useTripsContext();
     const { user } = useAuthContext();
 
-    const [title, setTitle] = useState("");
-    const [load, setLoad] = useState("");
-    const [reps, setReps] = useState("");
+    const [destination, setDestination] = useState("");
+    const [distance, setDistance] = useState("");
+    const [cost, setCost] = useState("");
     const [error, setError] = useState(null);
     const [emptyFields, setEmptyFields] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!user) {
-            setError("You must be logged in to add a workout");
+            setError("You must be logged in to add a trip");
             return;
         }
 
-        const workout = { title, load, reps };
+        const trip = { destination, distance, cost };
 
-        const response = await fetch("http://localhost:4000/api/workouts", {
+        const response = await fetch("http://localhost:4000/api/trips", {
             method: "POST",
-            body: JSON.stringify(workout),
+            body: JSON.stringify(trip),
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${user.token}`,
@@ -36,9 +36,9 @@ const WorkoutForm = () => {
             setEmptyFields(json.emptyFields);
         }
         if (response.ok) {
-            setTitle("");
-            setLoad("");
-            setReps("");
+            setDestination("");
+            setDistance("");
+            setCost("");
             setError(null);
             setEmptyFields([]);
             dispatch({ type: "CREATE_WORKOUT", payload: json });
@@ -52,25 +52,25 @@ const WorkoutForm = () => {
             <label>Where do you want to travel:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
-                className={emptyFields.includes("title") ? "error" : ""}
+                onChange={(e) => setDestination(e.target.value)}
+                value={destination}
+                className={emptyFields.includes("destination") ? "error" : ""}
             />
 
             <label>How far is it (km):</label>
             <input
                 type="number"
-                onChange={(e) => setLoad(e.target.value)}
-                value={load}
-                className={emptyFields.includes("load") ? "error" : ""}
+                onChange={(e) => setDistance(e.target.value)}
+                value={distance}
+                className={emptyFields.includes("distance") ? "error" : ""}
             />
 
             <label>How much money does it cost (PLN):</label>
             <input
                 type="number"
-                onChange={(e) => setReps(e.target.value)}
-                value={reps}
-                className={emptyFields.includes("reps") ? "error" : ""}
+                onChange={(e) => setCost(e.target.value)}
+                value={cost}
+                className={emptyFields.includes("cost") ? "error" : ""}
             />
 
             <button>Add to Bucket List</button>
@@ -79,4 +79,4 @@ const WorkoutForm = () => {
     );
 };
 
-export default WorkoutForm;
+export default TripForm;
